@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function throttle(fn, spacing) {
+            var timer;
+            return function() {
+                var arg = arguments;
+                var last;
+                var that = this;
+                var now = new Date();
+                if (last && now < last + spacing) {
+                    clearTimeout(timer);
+                    timer = setTimeout(function() {
+                        last = now;
+                        fn.apply(that, arg);
+                    }, spacing);
+                } else {
+                    last = now;
+                    fn.apply(that, arg);
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
